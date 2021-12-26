@@ -1,4 +1,5 @@
 import { Container } from 'components/Container'
+import { useEffect } from 'react'
 
 import * as S from './styles'
 import { BannerProps } from 'components/Banner'
@@ -7,6 +8,7 @@ import { HighlightProps } from 'components/Highlights'
 import BannerSlider from 'components/BannerSlider'
 import ShowCase from 'components/ShowCase'
 import Base from 'templates/Base'
+import BenefitsShop from 'components/BenefitsShop'
 
 export type HomeTemplateProps = {
   banners: BannerProps[]
@@ -18,48 +20,78 @@ export type HomeTemplateProps = {
   upcomingMoreProducts: ProductCardProps[]
   freeProducts: ProductCardProps[]
   freeHighlight: HighlightProps
+  newsProductsTitle: string
+  mostPopularProductsTitle: string
+  upcomingProductsTitle: string
+  wishedProductsTitle: string
 }
 
 const Home = ({
   banners,
   mostPopularHighlights,
   mostPopularProducts,
-  newsProducts
-}: HomeTemplateProps) => (
-  <Base>
-    <Container>
-      <S.SectionBanner>
+  newsProducts,
+  freeHighlight,
+  freeProducts,
+  mostPopularProductsTitle,
+  newsProductsTitle,
+  upcomingHighlights,
+  upcomingMoreProducts,
+  upcomingProducts,
+  upcomingProductsTitle,
+  wishedProductsTitle
+}: HomeTemplateProps) => {
+  return (
+    <Base>
+      {/* <BannerSlider items={banners} /> */}
+      <div>
+        <S.Image />
+      </div>
+      {/* <Container>
+        <S.SectionBanner>
         <BannerSlider items={banners} />
-      </S.SectionBanner>
-    </Container>
+        </S.SectionBanner>
+      </Container> */}
 
-    <S.SectionNews>
-      <ShowCase title=" Jóias recém chegadas" products={newsProducts} />
-    </S.SectionNews>
+      <Container
+        style={{ marginTop: 50, border: '1px solid black', height: 200 }}
+      >
+        <BenefitsShop />
+      </Container>
+      <S.SectionNews>
+        <ShowCase
+          title={newsProductsTitle}
+          products={newsProducts}
+          color="black"
+          midle={true}
+          size="medium"
+        />
+      </S.SectionNews>
 
-    <ShowCase
-      title="Mais Populares"
-      products={mostPopularProducts}
-      highlight={mostPopularHighlights}
-    />
-    <ShowCase products={newsProducts} />
-
-    <S.SectionUpcoming>
       <ShowCase
-        title="Lançamentos"
+        title={mostPopularProductsTitle}
         products={mostPopularProducts}
         highlight={mostPopularHighlights}
+        color="black"
+        midle
       />
-    </S.SectionUpcoming>
+      <ShowCase products={newsProducts} />
 
-    <S.SectionFreeGames>
       <ShowCase
-        title="Descontos especiais"
+        title={upcomingProductsTitle}
         products={mostPopularProducts}
         highlight={mostPopularHighlights}
+        color="black"
       />
-    </S.SectionFreeGames>
-  </Base>
-)
 
+      <ShowCase
+        title={wishedProductsTitle}
+        products={mostPopularProducts}
+        // highlight={mostPopularHighlights}
+        midle
+        color="black"
+      />
+    </Base>
+  )
+}
 export default Home

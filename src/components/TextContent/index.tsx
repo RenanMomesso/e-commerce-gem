@@ -7,7 +7,7 @@ export type TextContentProps = {
   content: string
 }
 
-const TextContent = ({ content, title }: TextContentProps) => (
+const TextContent = ({ content, title = 'Descrição' }: TextContentProps) => (
   <S.Wrapper>
     {!!title && (
       <Heading lineLeft lineColor="primary">

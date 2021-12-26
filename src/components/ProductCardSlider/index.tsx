@@ -13,7 +13,7 @@ export type ProductCardSliderProps = {
 
 const settings: SliderSettings = {
   arrows: true,
-  slidesToShow: 4,
+  slidesToShow: 4.2,
   infinite: false,
   lazyLoad: 'ondemand',
   responsive: [

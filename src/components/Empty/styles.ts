@@ -21,6 +21,7 @@ export const Title = styled.h2`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     font-size: ${theme.font.sizes.xxlarge};
+    margin-bottom: 10px;
   `}
 `
 
@@ -29,5 +30,6 @@ export const Description = styled.p`
     color: ${theme.colors.white};
     font-size: ${theme.font.sizes.large};
     font-weight: ${theme.font.light};
+    margin-bottom: 10px;
   `}
 `

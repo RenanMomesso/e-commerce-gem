@@ -9,6 +9,7 @@ export const Wrapper = styled.article`
     height: 100%;
     background-color: ${theme.colors.white};
     box-shadow: 0px 0px 13px -1px #edd6d6;
+    font-weight: 200;
   `}
 `
 
@@ -59,10 +60,12 @@ export const Info = styled.a`
 
 export const Title = styled.h3`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.large};
     line-height: ${theme.font.sizes.medium};
     font-weight: ${theme.font.bold};
     color: ${theme.colors.black};
+    text-align: center;
+    margin-bottom: 10px;
   `}
 `
 
@@ -70,7 +73,8 @@ export const Category = styled.h4`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
     font-weight: ${theme.font.bold};
-    color: ${theme.colors.gray};
+    color: ${theme.colors.black};
+    text-align: center;
   `}
 `
 
@@ -91,8 +95,9 @@ export const BuyBox = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     margin-top: ${theme.spacings.xxsmall};
+    text-align: center;
   `}
 `
 
@@ -102,15 +107,15 @@ type PriceProps = {
 
 const priceModifiers = {
   default: (theme: DefaultTheme) => css`
-    color: ${theme.colors.white};
+    color: ${theme.colors.red};
     padding: 0 ${theme.spacings.xxsmall};
-    background-color: #ffa687;
+
     border-radius: ${theme.border.radius};
     margin-right: calc(${theme.spacings.xxsmall} / 2);
   `,
 
   promotional: (theme: DefaultTheme) => css`
-    color: ${theme.colors.gray};
+    /* color: ${theme.colors.gray}; */
     text-decoration: line-through;
     margin-right: ${theme.spacings.xxsmall};
   `

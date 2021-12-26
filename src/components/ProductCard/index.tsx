@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link'
 import {
   FavoriteBorder,
   AddShoppingCart,
@@ -6,12 +7,13 @@ import {
 } from '@styled-icons/material-outlined'
 import Button from 'components/Button'
 import Ribbon, { RibbonsColors, RibbonSizes } from 'components/Ribbon'
+
 import * as S from './styles'
 
 export type ProductCardProps = {
-  title: string
-  category: string
-  img: string
+  title: string | any
+
+  img?: string
   price: string | number
   promotionalPrice?: string | number
   favorite?: boolean
@@ -23,6 +25,7 @@ export type ProductCardProps = {
 }
 
 const ProductCard = ({
+  slug,
   img,
   price,
   title,
@@ -31,6 +34,7 @@ const ProductCard = ({
   ribbon,
   ribbonColor,
   ribbonSizes,
+
   onFav
 }: ProductCardProps) => (
   <S.Wrapper>
@@ -40,34 +44,37 @@ const ProductCard = ({
       </Ribbon>
     )}
 
-    <S.ImageBox>
-      <img src={img} alt={title} />
-    </S.ImageBox>
+    <Link href={`product/${slug}`} passHref>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+    </Link>
 
     <S.Content>
-      <S.Info>
-        <S.Title>{title}</S.Title>
-        <S.Category>
-          12x de R${' '}
-          {Math.floor(Number(price) / 12)
-            .toFixed(2)
-            .replace('.', ',')}
-        </S.Category>
-      </S.Info>
+      <Link href={`product/${slug}`} passHref>
+        <S.Info>
+          <S.Title>{title}</S.Title>
+          <S.BuyBox>
+            <S.Price>R$ {promotionalPrice || price}</S.Price> ou
+            {!!promotionalPrice && <S.Price isPromotional> {price}</S.Price>}
+            {/* <Button icon={<AddShoppingCart />} size="small" /> */}
+          </S.BuyBox>
+          <S.Category>
+            12x de R$ {''}
+            {Math.floor(Number(price) / 12)
+              .toFixed(2)
+              .replace('.', ',')}
+          </S.Category>
+        </S.Info>
+      </Link>
 
-      <S.FavButton onClick={onFav} role="button">
+      {/* <S.FavButton onClick={onFav} role="button">
         {favorite ? (
           <Favorite aria-label="Remove from wishlist" />
         ) : (
           <FavoriteBorder aria-label="Add to Wishlist" />
         )}
-      </S.FavButton>
-
-      <S.BuyBox>
-        {!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}
-        <S.Price>{promotionalPrice || price}</S.Price>
-        <Button icon={<AddShoppingCart />} size="small" />
-      </S.BuyBox>
+      </S.FavButton> */}
     </S.Content>
   </S.Wrapper>
 )

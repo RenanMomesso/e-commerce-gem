@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
     border-bottom: 0.1rem solid ${theme.colors.lightGray};
     ${media.greaterThan('medium')`
       display: flex;
+
+      &:hover {
+        background-color:red;
+      }
     `}
   `}
 `

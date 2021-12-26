@@ -25,7 +25,7 @@ const Highlights = ({
     aria-label="bgimage"
     alignment={alignment}
   >
-    {!!floatImage && <S.FloatImage src={floatImage} alt={title} />}
+    {/* {!!floatImage && <S.FloatImage src={floatImage} alt={title} />} */}
     <S.Content>
       <S.Title>{title}</S.Title>
       <S.Subtitle>{subtitle}</S.Subtitle>

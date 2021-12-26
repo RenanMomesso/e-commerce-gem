@@ -34,6 +34,7 @@ const Sections = styled.section`
 
 export const SectionBanner = styled.section`
   ${({ theme }) => css`
+    margin-top: 20px;
     margin: ${theme.spacings.large} calc(-${theme.grid.gutter} / 2);
 
     ${media.greaterThan('medium')`
@@ -49,7 +50,6 @@ export const SectionNews = styled(Sections)`
     margin-bottom: calc(${theme.spacings.xxlarge} * 2);
 
     ${media.greaterThan('large')`
-    margin-top: -13rem;
     `}
 
     ${media.greaterThan('medium')`
@@ -57,7 +57,7 @@ export const SectionNews = styled(Sections)`
     padding-top: 14rem;
     padding-bottom: 10rem;
     background-color: #f2f2f2;
-    clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
+    /* clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%); */
 
     ${HeadingStyles.Wrapper}{
       color:${theme.colors.black};
@@ -65,18 +65,6 @@ export const SectionNews = styled(Sections)`
     `}
   `}
 `
-
-export const SectionMostPopular = styled(Sections)``
-
-export const SectionUpcoming = styled(Sections)`
-  ${({ theme }) => css`
-    ${HighlightsStyles.Wrapper} {
-      margin-top: calc(${theme.spacings.xlarge} * 2);
-    }
-  `}
-`
-
-export const SectionFreeGames = styled(Sections)``
 
 export const SectionFooter = styled.section`
   ${({ theme }) => css`
@@ -89,6 +77,21 @@ export const SectionFooter = styled.section`
     ${media.greaterThan('medium')`
     padding-top:calc(${theme.spacings.xxlarge} * 2);
     clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0 100%);
+    `}
+  `}
+`
+export const Image = styled.div<{ src?: any }>`
+  ${({ theme, src }) => css`
+    width: 100%;
+    height: 23rem;
+    background-color: ${theme.colors.lightGray};
+    background-color: #eaeaea;
+    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/934a2b88873337.5de56582a78a5.png);
+    background-position: center center;
+    background-size: cover;
+
+    ${media.greaterThan('medium')`
+    height: 58rem;
     `}
   `}
 `

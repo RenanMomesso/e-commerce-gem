@@ -7,6 +7,7 @@ import ProductDetails, { ProductDetailsProps } from 'components/ProductDetails'
 import { ProductCardProps } from 'components/ProductCard'
 import { HighlightProps } from 'components/Highlights'
 import ShowCase from 'components/ShowCase'
+import { Container } from 'components/Container'
 
 export type ProductTemplateProps = {
   productInfo: ProductInfoProps
@@ -16,6 +17,9 @@ export type ProductTemplateProps = {
   upcomingProducts: ProductCardProps[]
   upcomingHighlight: HighlightProps
   RecommendedProducts: ProductCardProps[]
+  cover: string
+  recommendedTitle?: string
+  upcomingHighlightTitle?: string
 }
 
 const Product = ({
@@ -25,10 +29,19 @@ const Product = ({
   details,
   RecommendedProducts,
   upcomingHighlight,
-  upcomingProducts
+  upcomingProducts,
+  cover,
+  recommendedTitle = 'Talvez você goste',
+  upcomingHighlightTitle = 'lançamentos'
 }: ProductTemplateProps) => {
   return (
     <Base>
+      <S.BrandCrumbWrapper>
+        <S.BrandCrumbText>
+          <p>asdasdasdasdasdsa</p>
+          <p>asdasdasdasdasdsa</p>
+        </S.BrandCrumbText>
+      </S.BrandCrumbWrapper>
       <S.Main>
         <S.ProductGallery>
           {!!gallery && <Gallery items={gallery} />}
@@ -53,15 +66,12 @@ const Product = ({
         </S.SectionProductDetails>
 
         <ShowCase
-          title="Lançamentos"
+          title={upcomingHighlightTitle}
           highlight={upcomingHighlight}
           products={upcomingProducts}
         />
 
-        <ShowCase
-          title="Talvez você possa gostar"
-          products={RecommendedProducts}
-        />
+        <ShowCase title={recommendedTitle} products={RecommendedProducts} />
       </S.Main>
     </Base>
   )

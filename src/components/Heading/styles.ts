@@ -49,29 +49,11 @@ export const Wrapper = styled.h2<HeadingProps>`
     ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor!)}
     ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor!)}
     ${!!size && wrapperModifiers[size](theme)}
-    /* &:after {
-      content: '';
-      position: absolute;
-      width: 64px;
-      height: 1px; */
-      /* top: 0; */
-      /* bottom: 0; */
-      /* margin: auto;
-      background: #ffa67d;
-      margin-top: 20px;
-      margin-left: 10px; */
-    /* }
-    &:before {
-      content: '';
-      position: absolute;
-      width: 64px;
-      height: 1px; */
-      /* top: 0; */
-      /* bottom: 0; */
-      /* margin: auto;
-      background: #ffa67d;
-      margin-top: 20px;
-      margin-left: -20px; */
-    }
   `}
+`
+
+export const HorizontalLeft = styled.div`
+  height: 2px;
+  background: linear-gradient(to right, purple 0%, #bfa4f7 100%);
+  width: 150px;
 `

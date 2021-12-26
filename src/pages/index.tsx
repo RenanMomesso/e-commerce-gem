@@ -1,24 +1,41 @@
 import Home, { HomeTemplateProps } from 'templates/Home'
-import bannersMock from 'components/BannerSlider/mock'
-import productsMock from 'components/ProductCardSlider/mock'
-import highlightMocks from 'components/Highlights/mock'
+import { initializeApollo } from 'utils/apollo'
+import { QUERY_HOME } from 'graphql/queries/home'
+import { QueryHome } from 'graphql/generated/QueryHome'
+import { bannersMap, highlightMapper, productsMapper } from 'utils/mappers'
 
 export default function Index(props: HomeTemplateProps) {
   return <Home {...props} />
 }
 
-export function getStaticProps() {
+export async function getStaticProps() {
+  const apolloClient = initializeApollo()
+
+  const {
+    data: { banners, newProducts, upcomingProducts, onWished, sections }
+  } = await apolloClient.query<QueryHome>({
+    query: QUERY_HOME
+  })
+
+  console.log('new Products', newProducts)
+
   return {
     props: {
-      banners: bannersMock,
-      newsProducts: productsMock,
-      mostPopularHighlights: highlightMocks,
-      mostPopularProducts: productsMock,
-      upcomingProducts: productsMock,
-      upcomingHighlights: highlightMocks,
-      upcomingMoreProducts: productsMock,
-      freeProducts: productsMock,
-      freeHighlight: highlightMocks
+      revalidate: 60,
+      initialApoloState: apolloClient.cache.extract(),
+      banners: bannersMap(banners),
+      newsProducts: productsMapper(newProducts),
+      newsProductsTitle: sections!.newProducts?.title,
+      mostPopularHighlights: highlightMapper(
+        sections!.favoritesProducts?.highlight
+      ),
+      mostPopularProducts: productsMapper(onWished),
+      mostPopularProductsTitle: sections!.popularProducts?.title,
+      upcomingProducts: productsMapper(upcomingProducts),
+      wishedProductsTitle: sections!.favoritesProducts?.title,
+      upcomingProductsTitle: sections!.upcomingProducts?.title,
+      upcomingHighlights: highlightMapper(sections!.newProducts?.highlight),
+      upcomingMoreProducts: productsMapper(sections!.popularProducts!.products)
     }
   }
 }

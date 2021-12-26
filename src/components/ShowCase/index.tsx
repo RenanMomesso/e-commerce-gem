@@ -8,18 +8,36 @@ export type ShowCaseProps = {
   title?: string
   highlight?: HighlightProps
   products?: ProductCardProps[]
+  color?: 'black' | 'white'
+  midle?: boolean
+  size?: 'small' | 'medium' | 'huge'
 }
-const ShowCase = ({ highlight, products, title }: ShowCaseProps) => (
-  <S.Wrapper>
-    {!!title && (
-      <Heading lineLeft lineColor="secondary">
-        {title}
-      </Heading>
-    )}
+const ShowCase = ({
+  highlight,
+  products,
+  title,
+  color = 'white',
+  midle = false,
+  size = 'medium'
+}: ShowCaseProps) => {
+  return (
+    <S.Wrapper>
+      {!!title && (
+        <Heading
+          size={size}
+          lineLeft
+          middle={midle}
+          lineColor="secondary"
+          color={color}
+        >
+          {title}
+        </Heading>
+      )}
 
-    {!!highlight && <Highlights {...highlight} />}
-    {!!products && <ProductCardSlider items={products} />}
-  </S.Wrapper>
-)
+      {!!highlight && <Highlights {...highlight} />}
+      {!!products && <ProductCardSlider items={products} />}
+    </S.Wrapper>
+  )
+}
 
 export default ShowCase

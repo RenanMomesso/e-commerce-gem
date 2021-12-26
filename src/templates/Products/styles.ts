@@ -5,7 +5,7 @@ import media from 'styled-media-query'
 export const Main = styled(Container)`
   ${({ theme }) => css`
     ${media.greaterThan('medium')`
-  display: grid;
+    display: grid;
     grid-template-columns: 26rem 1fr;
     gap: ${theme.grid.gutter};
   `}

@@ -52,5 +52,9 @@ export const Wrapper = styled.section<WrapperProps>`
     .slick-next.slick-disabled {
       visibility: hidden;
     }
+
+    .slick-slide slick-active slick-current {
+      border: 1px solid black;
+    }
   `}
 `

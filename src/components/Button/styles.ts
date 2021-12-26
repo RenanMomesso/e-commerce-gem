@@ -55,18 +55,22 @@ export const Wrapper = styled.button<WrapperProps>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
-    color: ${theme.colors.white};
+    background: linear-gradient(180deg, white 0%, lightgray 50%);
+    color: ${theme.colors.darkGray};
+    font-weight: bold;
     border: 0;
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.xxsmall};
     cursor: pointer;
     text-decoration: none;
+    transition: all 0.5s ease;
+    opacity: 1;
 
     &:hover {
+      opacity: 0.7;
       background: ${minimal
         ? 'none'
-        : 'linear-gradient(180deg, #e35565 0%, #d958a6 50%)'};
+        : 'linear-gradient(180deg, lightgray 0%, white 50%)'};
     }
 
     ${!!size && wrapperModifiers[size](theme)}
